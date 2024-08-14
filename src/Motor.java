@@ -29,6 +29,10 @@ public class Motor {
         quilometragem += distancia;
     }
 
+    public void setConsumo(int consumo){
+        this.consumo = consumo;
+    }
+
     @Override
     public String toString() {
         return "Motor [consumo=" + consumo + ", quilometragem=" + quilometragem + ", tipoMotor=" + tipoMotor + "]";
