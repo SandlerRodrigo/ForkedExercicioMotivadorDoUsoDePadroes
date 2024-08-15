@@ -11,13 +11,13 @@ public class Econo extends Carro {
     @Override
     public boolean viaja(int distancia) {
         if (verificaSePodeViajar(distancia) >= distancia) {
-            if(motor.getQuilometragem() + distancia > controleQuilometragem + 5000 && motor.getConsumo() > 10)
+            if(getMotor().getQuilometragem() + distancia > controleQuilometragem + 5000 && getMotor().getConsumo() > 10)
             {
                 controleQuilometragem += 5000;
-                motor.setConsumo(motor.getConsumo() - 1);
+                getMotor().setConsumo(getMotor().getConsumo() - 1);
             }
-            motor.percorre(distancia);
-            tanque.gasta(motor.combustivelNecessario(distancia));
+            getMotor().percorre(distancia);
+            getTanque().gasta(getMotor().combustivelNecessario(distancia));
             return true;
         }
         return false;
