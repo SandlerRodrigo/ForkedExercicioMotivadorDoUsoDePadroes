@@ -11,34 +11,32 @@ public class Econo extends Carro {
     @Override
     public boolean viaja(int distancia) {
         if (verificaSePodeViajar(distancia) >= distancia) {
+            // Se aumentar o consumo
             if(getMotor().getQuilometragem() + distancia > controleQuilometragem + 5000 && getMotor().getConsumo() > 10)
             {
                 int dif = calculaDiferenca(distancia);
-
-                System.out.println(dif + "   ||  " + distancia);
-                
                 // Percorre a diferenca até o decresimento do consumo
-                getMotor().percorre(distancia - dif);
-                getTanque().gasta(getMotor().combustivelNecessario(distancia - dif));
-
+                percorre(distancia - dif);
                 // Automenta o consumo
                 aumentaConsumo();
-
                 // Percorre o resto
-                getMotor().percorre(dif);
-                getTanque().gasta(getMotor().combustivelNecessario(dif));
-
+                percorre(dif);
                 controleQuilometragem += 5000;
                 return true;
             }
-            getMotor().percorre(distancia);
-            getTanque().gasta(getMotor().combustivelNecessario(distancia));
+            // Se n for aumentar o consumo
+            percorre(distancia);
             return true;
-
         }
         return false;
     }
-    
+
+    // Arrumar dps
+    private void percorre(int distancia)
+    {
+        getMotor().percorre(distancia);
+        getTanque().gasta(getMotor().combustivelNecessario(distancia));
+    }
 
     // Aumenta o consumo do motor
     private void aumentaConsumo()
